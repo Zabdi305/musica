@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e92c2cbc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 800px;
+            text-align: center;
+            background-color: #8e1010;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        audio {
+            width: 100%; /* Ajustado al 100% del contenedor */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+        
+        .phrase {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .controls {
+            margin-top: 20px;
+        }
+        
+        button {
+            background-color: #db3434;
+            color: #d73b3b;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+           
+            margin: 0 10px;
+        }
+        
+        button:hover {
+            background-color: #af2f25;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <audio controls>
+            <source id="audioSource" src="" type="audio/mpeg">
+          
+        </audio>
+        <div class="phrase">
+            <p id="audioPhrase">"audio"</p>
+        </div>
+        <div class="controls">
+            <button onclick="previousAudio()">Anterior</button>
+            <button onclick="nextAudio()">Siguiente</button>
+        </div>
+    </div>
+
+    <script>
+        const audioFiles = [
+            { src: 'musica/salsa/WhatsApp Audio 2024-09-12 at 9.45.17 PM.mp4', phrase: 'Música 1.' },
+            { src: 'musica/salsa/WhatsApp Audio 2024-09-12 at 9.45.14 PM.mp4', phrase: 'Música 2.' },
+            {src:'musica/salsa/WhatsApp Audio 2024-09-12 at 9.45.19 PM.mp4',phrase:'musica 3.'},
+           
+        ];
+        
+        let currentIndex = 0;
+        const audioElement = document.querySelector('audio');
+        const phraseElement = document.getElementById('audioPhrase');
+        
+        function showAudio(index) {
+            audioElement.src = audioFiles[index].src;
+            phraseElement.textContent = audioFiles[index].phrase;
+        }
+        
+        function nextAudio() {
+            currentIndex = (currentIndex + 1) % audioFiles.length;
+            showAudio(currentIndex);
+        }
+        
+        function previousAudio() {
+            currentIndex = (currentIndex - 1 + audioFiles.length) % audioFiles.length;
+            showAudio(currentIndex);
+        }
+        
+        showAudio(currentIndex);
+    </script>
+</body>
+</html>
