@@ -34,7 +34,35 @@ CREATE TABLE `generos musica` (
   `bachata` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 COMMIT;
-
+<?php
+session_start();
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    //aqui van los nombres de usuario
+    $username = "ANDREA MENDOZA";
+    $username = "BRENDA BALANZAR";
+    $username = "ZABDI BERENICE";
+    $username = "SOFIA BARTOLO";
+    $username = "AXEL LÓPEZ";
+    //aqui van todas las contraseñas de usuarios
+    $password = "andy4419";
+    $password = "brenda4520";
+    $password = "zabdi4621";
+    $password = "sofia4722";
+    $password = "axel4823";
+    
+    if($_POST['username'] == $username && $_POST['password'] == $password){
+        $_SESSION['loggedin'] = true;
+        header("location: welcome.php");
+        exit;
+    } else{
+        $error = "Usuario o contraseña incorrectos.";
+    }
+}
+//aqui comensamos con el emaquetado
+?>
+<DOCTYPE html>
+    <html lang="es">
+        <head>
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
